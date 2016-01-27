@@ -200,3 +200,8 @@ if (gmock_build_tests)
   cxx_executable(gmock_output_test_ test gmock)
   py_test(gmock_output_test)
 endif()
+
+set_target_properties(gmock PROPERTIES
+                      FOLDER "External/googletest")
+set_target_properties(gmock_main PROPERTIES
+                      FOLDER "External/googletest")
