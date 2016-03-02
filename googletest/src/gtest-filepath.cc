@@ -48,6 +48,11 @@
 # include <climits>  // Some Linux distributions define PATH_MAX here.
 #endif  // GTEST_OS_WINDOWS_MOBILE
 
+// Hacky workaround for missing macro on Raspberry Pi
+#ifndef _POSIX_PATH_MAX
+# define _POSIX_PATH_MAX 256
+#endif // _POSIX_PATH_MAX
+
 #if GTEST_OS_WINDOWS
 # define GTEST_PATH_MAX_ _MAX_PATH
 #elif defined(PATH_MAX)
