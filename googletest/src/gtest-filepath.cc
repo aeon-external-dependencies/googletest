@@ -26,14 +26,12 @@
 // THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 // (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-//
-// Authors: keith.ray@gmail.com (Keith Ray)
 
-#include "gtest/gtest-message.h"
 #include "gtest/internal/gtest-filepath.h"
-#include "gtest/internal/gtest-port.h"
 
 #include <stdlib.h>
+#include "gtest/internal/gtest-port.h"
+#include "gtest/gtest-message.h"
 
 #if GTEST_OS_WINDOWS_MOBILE
 # include <windows.h>
@@ -48,7 +46,8 @@
 # include <climits>  // Some Linux distributions define PATH_MAX here.
 #endif  // GTEST_OS_WINDOWS_MOBILE
 
-// Hacky workaround for missing macro on Raspberry Pi
+#include "gtest/internal/gtest-string.h"
+
 #ifndef _POSIX_PATH_MAX
 # define _POSIX_PATH_MAX 256
 #endif // _POSIX_PATH_MAX
@@ -62,8 +61,6 @@
 #else
 # define GTEST_PATH_MAX_ _POSIX_PATH_MAX
 #endif  // GTEST_OS_WINDOWS
-
-#include "gtest/internal/gtest-string.h"
 
 namespace testing {
 namespace internal {
@@ -135,7 +132,7 @@ FilePath FilePath::RemoveExtension(const char* extension) const {
   return *this;
 }
 
-// Returns a pointer to the last occurence of a valid path separator in
+// Returns a pointer to the last occurrence of a valid path separator in
 // the FilePath. On Windows, for example, both '/' and '\' are valid path
 // separators. Returns NULL if no path separator was found.
 const char* FilePath::FindLastPathSeparator() const {
